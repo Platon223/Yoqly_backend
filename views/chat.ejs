@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contacts | DarkSocial</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --gradient-start: #8e2de2;
+        --gradient-end: #ff6ec4;
+        --bg: #121212;
+        --card: #1f1f1f;
+        --text: #f1f1f1;
+        --muted: #aaa;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .contacts-container {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+      }
+
+      .sidebar {
+        width: 300px;
+        background-color: #1a1a1a;
+        border-right: 1px solid #2a2a2a;
+        overflow-y: auto;
+      }
+
+      .sidebar-header {
+        padding: 16px;
+        background: linear-gradient(
+          to right,
+          var(--gradient-start),
+          var(--gradient-end)
+        );
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .contact-list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .contact {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        cursor: pointer;
+        transition: background 0.2s;
+        text-decoration: none;
+        color: var(--text);
+      }
+
+      .contact:hover {
+        background-color: #2a2a2a;
+      }
+
+      .contact img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .contact-info .name {
+        font-weight: 500;
+      }
+
+      .contact-info .status {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .placeholder {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: var(--muted);
+      }
+
+      /* Mobile Style: Make contacts list full screen */
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+        }
+
+        .contacts-container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          height: 100%;
+          border-right: none;
+        }
+
+        .placeholder {
+          display: none;
+        }
+
+        .contact {
+          border-bottom: 1px solid #2a2a2a;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contacts-container">
+      <div class="sidebar">
+        <div class="sidebar-header">Contacts</div>
+        <div class="contact-list">
+          <a href="chat-contact1.html" class="contact">
+            <img
+              src="https://randomuser.me/api/portraits/women/44.jpg"
+              alt="User 1"
+            />
+            <div class="contact-info">
+              <span class="name">Alice</span>
+              <span class="status">Online</span>
+            </div>
+          </a>
+          <a href="chat-contact2.html" class="contact">
+            <img
+              src="https://randomuser.me/api/portraits/men/35.jpg"
+              alt="User 2"
+            />
+            <div class="contact-info">
+              <span class="name">John</span>
+              <span class="status">Offline</span>
+            </div>
+          </a>
+          <!-- Add more contacts as needed -->
+        </div>
+      </div>
+
+      <div class="placeholder">Click a contact to start texting.</div>
+    </div>
+  </body>
+</html>
