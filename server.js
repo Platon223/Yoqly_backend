@@ -49,7 +49,7 @@ const io = new Server(server, {
       methods: ["GET", "POST"]
     }
   });
-const mongoAPI = "mongodb+srv://root:6424webdata123@infodata.d9ge5.mongodb.net/infodata?retryWrites=true&w=majority&appName=infoData"
+const mongoAPI = process.env.MONGO_API
 mongoose.connect(mongoAPI, { useNewUrlParser: true, useUnifiedTopology: true, socketTimeoutMS: 45000,  
     connectTimeoutMS: 30000 
     })
