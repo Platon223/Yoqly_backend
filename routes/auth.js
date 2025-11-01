@@ -3,7 +3,7 @@ const router = express.Router();
 import { loginCont } from '../controllers/auth.js';
 
 router.post('/:step', (req, res) => {
-    loginCont(req.params.step)
+    loginCont(req, res, req.params.step)
 });
 
 
