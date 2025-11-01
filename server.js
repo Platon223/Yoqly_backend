@@ -21,6 +21,7 @@ import logOut from './routes/logout.js'
 import getUsr from './routes/getUser.js'
 import decryptMess from './routes/decryptMessages.js'
 import cfToken from './routes/cfToken.js'
+import verify from './routes/verify.js'
 import { createRequire } from 'module';
 import { Server } from 'socket.io'
 import { serialize } from 'v8';
@@ -112,6 +113,7 @@ app.use('/logout', logOut);
 app.use('/getUser', verJWT, getUsr);
 app.use('/decrypt', verJWT, decryptMess);
 app.use('/cfToken', cfToken);
+app.use('/verify', verify)
 
 
 
