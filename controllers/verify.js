@@ -3,8 +3,8 @@ import User from '../models/User.js'
 import Codes from '../models/Codes.js'
 
 const verifyMFA = async (req, res) => {
-    const code = request.body.code
-    const username = request.body.username
+    const code = req.body.code
+    const username = req.body.username
 
     const user = await User.findOne({username: username})
     if (!user) return res.status(404).json({"message": "user not found"})
