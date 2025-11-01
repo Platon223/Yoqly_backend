@@ -2,7 +2,9 @@ import express from 'express'
 const router = express.Router();
 import { loginCont } from '../controllers/auth.js';
 
-router.post('/', loginCont);
+router.post('/:step', (req, res) => {
+    loginCont(req.params.step)
+});
 
 
 export default router
