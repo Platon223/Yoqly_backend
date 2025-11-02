@@ -5,7 +5,7 @@ import { access } from 'fs';
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
-import { Queue, QueueEvents } from 'bullmq'
+import { Queue } from 'bullmq'
 
 dotenv.config()
 
@@ -16,31 +16,9 @@ const emailQueue = new Queue('Email_MFA', {
     }
 })
 
-const emailQueueEvents = new QueueEvents("Email_MFA", {
-    connection: {
-        host: "localhost",
-        port: 6379
-    }
-})
 
 async function sendMFAEmail(emailContent) {
-    const task = await emailQueue.add("sendMFA", emailContent)
-
-    emailQueueEvents.on("completed", ({taskId, returnValue}) => {
-        if (task.id === taskId) {
-            QueueEvents.close()
-
-            return returnValue
-        }
-    })
-
-    emailQueueEvents.on("failed", ({taskId, returnValue}) => {
-        if (task.id === taskId) {
-            QueueEvents.close()
-
-            return returnValue
-        }
-    })
+    await emailQueue.add("sendMFA", emailContent)
 }
 
 
@@ -67,10 +45,10 @@ const loginCont = async (req, res, step) => {
 
         if (passwordIdentified) {
             // Send Email with the verify code
-            const email_options = {}
-            const response = sendMFAEmail(email_options)
+            const email_options = {to: "email.com"}
+            sendMFAEmail(email_options)
 
-            return res.status(200).json({"message": `${response}`})
+            return res.status(200).json({"message": "Email has been sent"})
         } 
 
         return res.status(401).json({"message": "invalid password"})
